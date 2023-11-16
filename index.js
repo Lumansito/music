@@ -4,12 +4,14 @@
 function handleClick() {
     var buttonInnerHTML = this.innerHTML;
     reproductor(buttonInnerHTML);
+    buttonAnimation(buttonInnerHTML);
 }
 var array = document.querySelectorAll(".drum");
 array.forEach(element => {element.addEventListener("click", handleClick);});
 
 document.addEventListener("keydown", function(e) {
     reproductor(e.key);
+    buttonAnimation(e.key);
 });
 
 
@@ -46,3 +48,12 @@ function reproductor(letra){
   }
     audio.play();
 }
+
+function buttonAnimation(currentKey){
+    var activeButton = document.querySelector("." + currentKey);
+
+    activeButton.classList.add("pressed");
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    }, 100);
+}   
